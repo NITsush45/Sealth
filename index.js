@@ -7,12 +7,10 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Test route
 app.get('/', (req, res) => {
   res.send('API working!');
 });
 
-// Get all enrollments
 app.get('/enrollments', async (req, res) => {
   try {
     const result = await pool.query('SELECT * FROM enrollments');
@@ -23,7 +21,6 @@ app.get('/enrollments', async (req, res) => {
   }
 });
 
-// Get enrollment by ID
 app.get('/enrollments/:id', async (req, res) => {
   try {
     const { id } = req.params;
@@ -35,7 +32,6 @@ app.get('/enrollments/:id', async (req, res) => {
   }
 });
 
-// Create new enrollment
 app.post('/enrollments', async (req, res) => {
   try {
     const {
@@ -68,7 +64,6 @@ app.post('/enrollments', async (req, res) => {
   }
 });
 
-// Start server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
